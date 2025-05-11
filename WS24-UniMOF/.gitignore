@@ -1,0 +1,26 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# too big to git
+*.lmdb
+*.sto
+*.pt
+*.pkl
+
+# pytest
+.pytest_cache
+test/.pytest_cache
+/local*
+/_*
+
+# logs and evaluation
+logs*/
+evaluation*/
