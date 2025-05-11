@@ -10,10 +10,8 @@ __pycache__/
 .python-version
 
 # too big to git
-*.lmdb
-*.sto
-*.pt
 *.pkl
+*.pt
 
 # pytest
 .pytest_cache

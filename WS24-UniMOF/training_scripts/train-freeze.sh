@@ -7,7 +7,7 @@ export OMP_NUM_THREADS=1
 # Run the training command
 nohup python $(which unicore-train) ./ \
   --user-dir ./unimat \
-  --task-name CoRE_PLD \
+  --task-name WS24 \
   --train-subset train \
   --valid-subset valid,test \
   --num-workers 0 \
