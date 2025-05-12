@@ -1,0 +1,44 @@
+data_functionalizedCrystal
+_audit_creation_method	'MofGen! by Chris Wilmer'
+_symmetry_space_group_name_H-M	'P1'
+_symmetry_Int_Tables_number	1
+_symmetry_cell_setting	triclinic
+loop_
+_symmetry_equiv_pos_as_xyz
+  x,y,z
+_cell_length_a	9.065218
+_cell_length_b	14.519731
+_cell_length_c	7.540329
+_cell_angle_alpha	89.995423
+_cell_angle_beta	89.995865
+_cell_angle_gamma	84.352369
+loop_
+_atom_site_label
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+O1	O	1.957881	0.135224	-0.147537
+O2	O	1.528389	0.146316	-0.147530
+O3	O	1.754506	0.006616	-0.147517
+O4	O	1.731764	0.274924	-0.147549
+O5	O	1.754493	0.006614	0.147448
+O6	O	1.528376	0.146314	0.147435
+O7	O	1.957867	0.135222	0.147428
+Cu8	Cu	1.743120	0.140768	0.174364
+Cu9	Cu	1.743136	0.140770	-0.174466
+O10	O	1.731751	0.274922	0.147416
+C11	C	1.753434	-0.027752	-0.000034
+C12	C	1.750241	-0.130156	-0.000033
+C13	C	1.473416	0.145249	-0.000046
+C14	C	1.309632	0.142062	-0.000043
+C15	C	2.012841	0.136289	-0.000059
+C16	C	2.176624	0.139476	-0.000074
+C17	C	1.747646	-0.213319	-0.000037
+C18	C	1.744404	-0.317651	-0.000051
+C19	C	1.741831	-0.400809	-0.000062
+C20	C	1.738589	-0.505148	-0.000072
+C21	C	1.732823	0.309290	-0.000071
+C22	C	1.736016	0.411694	-0.000084
+N23	N	1.743120	0.140766	0.419713
+N24	N	1.743148	0.140765	-0.419814
