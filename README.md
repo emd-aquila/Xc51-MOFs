@@ -4,7 +4,7 @@
 This project focuses on fine-tuning the UniMOF model on the WS24 dataset. The goal is to enhance the model's performance specifically for predicting Metal-Organic Framework (MOF) water stability.
 
 ## Description
-- **Model**: UniMOF
+- **Model**: Uni-MOF
 - **Dataset**: WS24
 - **Purpose**: Fine-tuning the UniMOF model to improve its performance on water stability predictions for MOFs
 
