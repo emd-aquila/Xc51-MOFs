@@ -41,6 +41,10 @@ MIN_MAX_KEY = {
         'pressure': [-4.0, 6.0],      # transoformed pressure in log10(P) [-2, 1.0]
         'temperature': [100, 400.0],   # only 298k, 273k is used
     },
+    'MOFX-DB':{
+        'pressure': [-4.0, 6.0],      # transoformed pressure in log10(P)
+        'temperature': [100, 400.0],
+    }
 }
 
 @register_model("unimof_v2")

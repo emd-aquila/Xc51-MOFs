@@ -28,6 +28,7 @@ class CrossEntropyLossWS24(UnicoreLoss):
             logging_output = {
                 "loss": loss.item(),
                 "logits": net_output[0].detach().cpu(),
+                "mof-name": sample['mof_name'],
                 "predict": (torch.argmax(F.log_softmax(net_output[0].float(), dim=-1), dim=1) + 1).detach().cpu(),
                 "target": sample["target"]['finetune_target'].view(-1).detach().cpu(),
                 "bsz": sample_size,

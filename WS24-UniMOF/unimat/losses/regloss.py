@@ -15,6 +15,7 @@ ATTR_REGESTRY = {
     ### log1p + standardization
     'hmof': [0.7352541603735866, 0.6419512242050728, 'log1p_standardization'],
     'CoRE_DB': [4.877768551522245, 1.3630433513018894, 'log1p_standardization'],
+    'MOFX-DB': [1.318703908155812, 1.657051374039756,'log1p_standardization'],
     'CoRE_MAP': [1.318703908155812, 1.657051374039756,'log1p_standardization'],
     'CoRE_MAP_CH4': [1.318703908155812, 1.657051374039756,'log1p_standardization'],
     'CoRE_MAP_CO2': [1.318703908155812, 1.657051374039756,'log1p_standardization'],

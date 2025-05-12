@@ -23,4 +23,8 @@ test/.pytest_cache
 # logs and evaluation
 logs*/
 evaluation*/
+<<<<<<< Updated upstream
 MOFX-DB/
+=======
+CoREMOF_2019/
+>>>>>>> Stashed changes

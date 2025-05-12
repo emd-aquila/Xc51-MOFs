@@ -113,6 +113,8 @@ class UniMOFWS24Task(UnicoreTask):
         dataset = LMDBDataset(split_path)
         tgt_dataset = KeyDataset(dataset, "target")
         tgt_dataset = ToTorchDataset(tgt_dataset, dtype='float32')
+        name_dataset = KeyDataset(dataset, "mof-name")
+        #name_dataset = ToTorchDataset(tgt_dataset, dtype='string')
         if self.args.remove_hydrogen:
             dataset = RemoveHydrogenDataset(dataset, "atoms", "coordinates")
         dataset = CroppingDataset(dataset, self.seed, "atoms", "coordinates", self.args.max_atoms)
@@ -174,7 +176,7 @@ class UniMOFWS24Task(UnicoreTask):
                             pad_idx=0,
                         ),
                     },
-                    #"mof_name": RawArrayDataset(mof_name),
+                    "mof_name": name_dataset,
                     "target": {
                         "finetune_target": tgt_dataset,
                     },
