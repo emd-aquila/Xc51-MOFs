@@ -44,6 +44,14 @@ class UniMOFWS24Model(BaseUnicoreModel):
                                 self.args.num_classes, 
                                 self.args.pooler_activation_fn,
                                 self.args.pooler_dropout)
+        self._cls_repr = []  # to store representation
+        self._hook_registered = False  # <-- prevent hook stacking
+        def encoder_hook(module, input, output):
+            cls_token = output[0][:, 0, :].detach().cpu().clone()  # output[0] is hidden_states
+            self._cls_repr.append(cls_token)
+        if not self._hook_registered:
+            self.unimat.encoder.register_forward_hook(encoder_hook)
+            self._hook_registered = True
 
     @classmethod
     def build_model(cls, args, task):
@@ -73,11 +81,16 @@ class UniMOFWS24Model(BaseUnicoreModel):
         mol_x = self.unimat.embed_tokens(src_tokens)
         graph_attn_bias = get_dist_features(src_distance, src_edge_type)
         encoder_outputs = self.unimat.encoder(mol_x, padding_mask=padding_mask, attn_mask=graph_attn_bias)
-        cls_repr = encoder_outputs[0][:, 0, :] # CLS, shape of cls_repr is [batch_size, encoder_embed_dim]
+        cls_repr = encoder_outputs[0][:, 0, :]  # CLS token
         logits = self.classifier(cls_repr)
 
         return [logits]
-        
+    def extract_cls_embeddings(self):
+        return self._cls_repr
+    def extract_features(self, input):
+        x = self.encoder(input)  # hypothetical encoder
+        return x
+
     def set_num_updates(self, num_updates):
         """State from trainer to pass along to model at every update."""
         self._num_updates = num_updates
@@ -149,7 +162,14 @@ class UniMOFWS24FreezeModel(BaseUnicoreModel):
                                 self.args.num_classes, 
                                 self.args.pooler_activation_fn,
                                 self.args.pooler_dropout)
-
+        self._cls_repr = []  # to store representation
+        self._hook_registered = False
+        def encoder_hook(module, input, output):
+            cls_token = output[0][:, 0, :].detach().cpu().clone()  # output[0] is hidden_states
+            self._cls_repr.append(cls_token)
+        if not self._hook_registered:
+            self.unimat.encoder.register_forward_hook(encoder_hook)
+            self._hook_registered = True
     @classmethod
     def build_model(cls, args, task):
         """Build a new model instance."""
@@ -178,11 +198,13 @@ class UniMOFWS24FreezeModel(BaseUnicoreModel):
         mol_x = self.unimat.embed_tokens(src_tokens)
         graph_attn_bias = get_dist_features(src_distance, src_edge_type)
         encoder_outputs = self.unimat.encoder(mol_x, padding_mask=padding_mask, attn_mask=graph_attn_bias)
-        cls_repr = encoder_outputs[0][:, 0, :] # CLS, shape of cls_repr is [batch_size, encoder_embed_dim]
+        cls_repr = encoder_outputs[0][:, 0, :]  # CLS token
         logits = self.classifier(cls_repr)
 
         return [logits]
-        
+    def extract_cls_embeddings(self):
+        """Access collected CLS embeddings."""
+        return self._cls_repr
     def set_num_updates(self, num_updates):
         """State from trainer to pass along to model at every update."""
         self._num_updates = num_updates
@@ -259,7 +281,14 @@ class UniMOFWS24PartialFreezeModel(BaseUnicoreModel):
                                 self.args.num_classes, 
                                 self.args.pooler_activation_fn,
                                 self.args.pooler_dropout)
-
+        self._cls_repr = []  # to store representation
+        self._hook_registered = False
+        def encoder_hook(module, input, output):
+            cls_token = output[0][:, 0, :].detach().cpu().clone()  # output[0] is hidden_states
+            self._cls_repr.append(cls_token)
+        if not self._hook_registered:
+            self.unimat.encoder.register_forward_hook(encoder_hook)
+            self._hook_registered = True
     @classmethod
     def build_model(cls, args, task):
         """Build a new model instance."""
@@ -292,7 +321,9 @@ class UniMOFWS24PartialFreezeModel(BaseUnicoreModel):
         logits = self.classifier(cls_repr)
 
         return [logits]
-        
+    def extract_cls_embeddings(self):
+        """Access collected CLS embeddings."""
+        return self._cls_repr        
     def set_num_updates(self, num_updates):
         """State from trainer to pass along to model at every update."""
         self._num_updates = num_updates
@@ -369,7 +400,14 @@ class UniMOFWS24MostlyFreezeModel(BaseUnicoreModel):
                                 self.args.num_classes, 
                                 self.args.pooler_activation_fn,
                                 self.args.pooler_dropout)
-
+        self._cls_repr = []  # to store representation
+        self._hook_registered = False  # <-- prevent hook stacking
+        def encoder_hook(module, input, output):
+            cls_token = output[0][:, 0, :].detach().cpu().clone()  # output[0] is hidden_states
+            self._cls_repr.append(cls_token)
+        if not self._hook_registered:
+            self.unimat.encoder.register_forward_hook(encoder_hook)
+            self._hook_registered = True
     @classmethod
     def build_model(cls, args, task):
         """Build a new model instance."""
@@ -402,7 +440,9 @@ class UniMOFWS24MostlyFreezeModel(BaseUnicoreModel):
         logits = self.classifier(cls_repr)
 
         return [logits]
-        
+    def extract_cls_embeddings(self):
+        """Access collected CLS embeddings."""
+        return self._cls_repr        
     def set_num_updates(self, num_updates):
         """State from trainer to pass along to model at every update."""
         self._num_updates = num_updates

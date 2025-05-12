@@ -8,6 +8,7 @@ import logging
 import os
 import sys
 import pickle
+import numpy as np
 import torch
 from unicore import checkpoint_utils, distributed_utils, options, utils
 from unicore.logging import progress_bar
@@ -60,6 +61,7 @@ def main(args):
     # Build loss
     loss = task.build_loss(args)
     loss.eval()
+    all_cls_repr = []
 
     for subset in args.valid_subset.split(","):
         try:
@@ -71,7 +73,7 @@ def main(args):
         if not os.path.exists(args.results_path):
             os.makedirs(args.results_path)
         fname = (args.path).split("/")[-2]
-        save_path = os.path.join(args.results_path, fname + "_" + subset + ".out.pkl")
+        save_path = os.path.join(args.results_path, f"{fname}_{subset}_tsne_.out.pkl")
         # Initialize data iterator
         itr = task.get_batch_iterator(
             dataset=dataset,
@@ -97,9 +99,18 @@ def main(args):
             if len(sample) == 0:
                 continue
             _, _, log_output = task.valid_step(sample, model, loss, test=True)
+            cls_repr = model._cls_repr[-1].numpy()
+            all_cls_repr.append(cls_repr)
+
+
             progress.log({}, step=i)
             log_outputs.append(log_output)
-        pickle.dump(log_outputs, open(save_path, "wb"))
+           
+        cls_save_path = os.path.join(args.results_path, f"{fname}_{subset}_cls_repr.pkl")
+        repr_array = np.concatenate(all_cls_repr, axis=0)  # shape: (N, hidden_dim)
+
+        pickle.dump(repr_array, open(cls_save_path, "wb"))  # Save CLS reps
+        pickle.dump(log_outputs, open(save_path, "wb"))     # Save logs
         logger.info("Done inference! ")
     return None
 
