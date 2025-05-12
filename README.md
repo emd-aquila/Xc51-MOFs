@@ -26,3 +26,6 @@ Xc51-MOFs/
 
 ## Dependencies
 Please refer to the [Uni-MOF repository](https://github.com/dptech-corp/Uni-MOF/blob/main) for detailed dependency requirements.
+
+## Additional Code and Results
+Files and data that were too large or cumbersome to add to GitHub are stored in a separate [DropBox](https://www.dropbox.com/scl/fo/ndp04q6qbwtftfdq54154/APjH7BHUiHyUa0jrx22GPNE?rlkey=6u339qp8iyc4rch1j0mnq5isn&e=2&st=qluyyoa0&dl=0).
