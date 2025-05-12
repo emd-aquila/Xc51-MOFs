@@ -12,6 +12,7 @@ This project focuses on fine-tuning the UniMOF model on the WS24 dataset. The go
 ```
 Xc51-MOFs/
 ├── README.md
+├── Report.pdf                        # Report
 ├── Uni-MOF_infer.ipynb               # Script for inference using the original Uni_MOF model
 └── MOF_screening/
     └── MOFX_cifs/                    # Contains extracted .cif files for MOFX-DB entries
