@@ -12,16 +12,21 @@ This project focuses on fine-tuning the UniMOF model on the WS24 dataset. The go
 ```
 Xc51-MOFs/
 ├── README.md
+├── Uni-MOF_infer.ipynb               # Script for inference using the original Uni_MOF model
+└── MOF_screening/
+    └── MOFX_cifs/                    # Contains extracted .cif files for MOFX-DB entries
+    ├── download_mofx_cifs.ipynb      # Script to download .cif files from MOFX-DB API
+    ├── run_unimof_predictions.ipynb  # Script to predict CO2 adsorption with UniMOF for MOFX-DB .cifs (not used, resorted to CoRE MOF due to time constraints)
 └── WS24-UniMOF/
-    ├── images/           # Contains visualization of training results and model evaluation
-    ├── infer.ipynb       # Script for model inference
-    ├── inference_scripts/# Scripts for model inference with the fine-tuned model
-    ├── preprocess.ipynb  # Script for preprocessing WS24 cifs
-    ├── plotting.ipynb    # Script for producing model performance plot
-    ├── train.ipynb       # Script for fine-tuning Uni-MOF on WS24
-    ├── training_scripts/ # Scripts for the fine-tuning process and training utilities
-    ├── unimat/           # Core Uni-MOF model implementation and related utilities
-    └── WS24/             # WS24 training, validation, and test datasets
+    ├── images/                       # Contains visualization of training results and model evaluation
+    ├── infer.ipynb                   # Script for model inference
+    ├── inference_scripts/            # Scripts for model inference with the fine-tuned model
+    ├── preprocess.ipynb              # Script for preprocessing WS24 cifs
+    ├── plotting.ipynb                # Script for producing model performance plot
+    ├── train.ipynb                   # Script for fine-tuning Uni-MOF on WS24
+    ├── training_scripts/             # Scripts for the fine-tuning process and training utilities
+    ├── unimat/                       # Core Uni-MOF model implementation and related utilities
+    └── WS24/                         # WS24 training, validation, and test datasets
 ```
 
 ## Dependencies
