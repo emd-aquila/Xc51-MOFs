@@ -4,9 +4,9 @@
 This project focuses on fine-tuning the UniMOF model on the WS24 dataset. The goal is to utilize transfer learning to make use of UniMOF's latent structural representations of metal-organic frameworks (MOFs) to predict water stability of high CO2 uptake MOFs.
 
 ## Description
-- **Model**: [Uni-MOF]{https://github.com/dptech-corp/Uni-MOF} 
-- **Dataset**: WS24
-- **Purpose**: Fine-tuning the UniMOF model to improve its performance on water stability predictions for MOFs
+- **Model**: [Uni-MOF](https://github.com/dptech-corp/Uni-MOF)
+- **Dataset**: [WS24](https://chemrxiv.org/engage/chemrxiv/article-details/6627aaa721291e5d1d7a4c59)
+- **Purpose**: Fine-tuning the UniMOF model to improve its water stability predictions accuracy for MOFs.
 
 ## Project Structure
 ```
